@@ -56,8 +56,9 @@ class App extends Component {
   }
 
   handleRegisterSubmit(e, data){
+    console.log(data);
     e.preventDefault();
-    fetch('/api/auth/login', {
+    fetch('/api/auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

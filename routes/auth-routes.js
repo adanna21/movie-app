@@ -13,17 +13,6 @@ authRouter.post('/login', passport.authenticate('local', {
   })
 );
 
-authRouter.get('/logout', (req, res) => {
-  req.logout();
-  res.json({
-    message: 'logged out',
-    auth: false,
-    data: {
-      user: null,
-    }
-  })
-});
-
 authRouter.get('/verify', (req, res) => {
   if (req.user) return res.status(200).json({
     message: 'ok',
@@ -40,5 +29,18 @@ authRouter.get('/verify', (req, res) => {
     }
   });
 });
+
+authRouter.get('/logout', (req, res) => {
+  req.logout();
+  res.json({
+    message: 'logged out',
+    auth: false,
+    data: {
+      user: null,
+    }
+  })
+});
+
+
 
 module.exports = authRouter;
