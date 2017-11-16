@@ -3,8 +3,8 @@ import Movie from './Movie';
 import MovieForm from './MovieForm';
 
 class MovieList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       movies: null,
       dataLoaded: false,
@@ -23,9 +23,9 @@ componentDidMount(){
     .then(res => {
       this.setState({
         movies: res.data.movies,
-        dataLoaded: true,
+        dataLoaded: true
       })
-    }).catch(err => console.log(err));
+    }).catch(err => console.log(err))
   }
 
   setEditing(id) {
