@@ -34,6 +34,18 @@ componentDidMount(){
     })
   }
 
+  deleteMovie(id) {
+    fetch(`/api/movies/${id}`, {
+      method: 'DELETE',
+      credentials: 'include',
+    }).then(res => res.json())
+      .then(res => {
+        console.log(res);
+        this.getAllMovies();
+      }).catch(err => console.log(err));
+  }
+
+
   handleFormSubmit(method, e, data, id) {
       e.preventDefault()
       fetch(`/api/movies/${id || ''}`, {
