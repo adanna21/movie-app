@@ -26,7 +26,7 @@ class Login extends Component {
   render(){
     return(
       <div>
-        <form>
+        <form onSubmit={(e) => this.props.handleLoginSubmit(e, this.state)}>
           <input
             type="text"
             name="username"
