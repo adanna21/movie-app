@@ -5,6 +5,7 @@ import './App.css';
 import Home from './components/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import MovieList from './components/MovieList'
 
 class App extends Component {
 
@@ -105,8 +106,12 @@ class App extends Component {
               ? <Redirect to="/dashboard" />
               : <Register handleRegisterSubmit={this.handleRegisterSubmit} />
             )} />
+          <Route exact path='/movies' render={() => <MovieList auth={this.state.auth} />} />
+           
           </div>
           <Footer />
+          
+
         </div>
       </Router>
     );
