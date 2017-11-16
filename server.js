@@ -44,7 +44,22 @@ app.get('/', (req, res) => {
 
 
 // comment these out for now
-// const authRoutes = require('./routes/auth-routes');
-// app.use('/api/auth', authRoutes);
-// const movieRoutes = require('./routes/movie-routes');
-// app.use('/api/movies', movieRoutes);
+const authRoutes = require('./routes/auth-routes');
+app.use('/api/auth', authRoutes);
+const movieRoutes = require('./routes/movie-routes');
+app.use('/api/movies', movieRoutes);
+
+//error handlers
+app.use('*', (req, res) => {
+  res.status(400).json({
+    message: 'Not found!',
+  });
+});
+
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(500).json({
+    error: err,
+    message: err.message,
+  });
+});
