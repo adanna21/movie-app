@@ -5,6 +5,7 @@ import './App.css';
 import Home from './components/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import MovieList from './components/MovieList'
 
 class App extends Component {
 
@@ -24,6 +25,7 @@ class App extends Component {
           <Header />
           <Footer />
           <Route path="/" component={Home} />
+          <Route exact path='/movies' render={() => <MovieList auth={this.state.auth} />} />
         </div>
       </Router>
     );
