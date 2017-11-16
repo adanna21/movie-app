@@ -17,6 +17,18 @@ class App extends Component {
     }
   }
 
+  componentDidMount(){
+    fetch('/api/auth/verify', {
+      credentials: 'include',
+    }).then(res => res.json())
+    .then(res => {
+      this.setState({
+        auth: res.auth,
+        user: res.data.user,
+      })
+    }).catch(err => console.log(err));
+  }
+
   handleLoginSubmit(e, data){
     e.preventDefault();
     fetch('/api/auth/login', {
@@ -70,7 +82,9 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header />
+          <Header
+            logout={this.logout}
+          />
           <Footer />
           <Route path="/" component={Home} />
           <Route exact path="/login" render={() => (
