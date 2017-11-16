@@ -12,7 +12,7 @@ movieController.index = (req, res, next) => {
     }).catch(next)
 };
 
-movieController.show = (req, res, next) =. {
+movieController.show = (req, res, next) => {
   Movie.findById(req.params.id)
     .then(movie => {
       res.json({

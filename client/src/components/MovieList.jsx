@@ -8,7 +8,7 @@ class MovieList extends Component {
     this.state = {
       movies: null,
       dataLoaded: false,
-      auth: props.auth,
+      auth: this.props.auth,
       currentlyEditing:null,
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this);

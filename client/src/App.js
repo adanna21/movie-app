@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import Register from './components/Register';
 import './App.css';
 
 import Home from './components/Home';
@@ -107,10 +110,10 @@ class App extends Component {
               : <Register handleRegisterSubmit={this.handleRegisterSubmit} />
             )} />
           <Route exact path='/movies' render={() => <MovieList auth={this.state.auth} />} />
-           
+
           </div>
           <Footer />
-          
+
 
         </div>
       </Router>
