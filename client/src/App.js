@@ -15,6 +15,9 @@ class App extends Component {
       auth: false,
       user: null,
     }
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   componentDidMount(){
@@ -85,23 +88,25 @@ class App extends Component {
           <Header
             logout={this.logout}
           />
+          <div className="container">
+            <Route path="/" component={Home} />
+            <Route exact path="/login" render={() => (
+              this.state.auth
+              ? <Redirect to="/dashboard" />
+              : <Login handleLoginSubmit={this.handleLoginSubmit} />
+            )} />
+            <Route exact path="/dashboard" render={() => (
+              !this.state.auth
+              ? <Redirect to="/login" />
+              : <Dashboard user={this.state.user} />
+            )} />
+            <Route exact path="/register" render={() => (
+              this.state.auth
+              ? <Redirect to="/dashboard" />
+              : <Register handleRegisterSubmit={this.handleRegisterSubmit} />
+            )} />
+          </div>
           <Footer />
-          <Route path="/" component={Home} />
-          <Route exact path="/login" render={() => (
-            this.state.auth
-            ? <Redirect to="/dashboard" />
-            : <Login handleLoginSubmit={this.handleLoginSubmit} />
-          )} />
-          <Route exact path="/dashboard" render={() => (
-            !this.state.auth
-            ? <Redirect to="/login" />
-            : <Dashboard user={this.state.user} />
-          )} />
-          <Route exact path="/register" render={() => (
-            this.state.auth
-            ? <Redirect to="/dashboard" />
-            : <Register handleRegisterSubmit={this.handleRegisterSubmit} />
-          )} />
         </div>
       </Router>
     );
